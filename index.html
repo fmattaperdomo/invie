@@ -5,6 +5,10 @@
 		<title>Invie - tus mejores guitarras !!</title>
 		<link rel="stylesheet" type="text/css" href="css/invie.css">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Allerta" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+		<!-- 
+		<link rel="stylesheet" media="(max-width:800px)" href="css/media-querie.css">
+		 -->
 		<!-- estilos 
 		<style type="text/css">
 			body {
@@ -19,9 +23,10 @@
 			<header id="header" class="header contenedor">
 			<!-- logotipo y menu -->
 			<figure class="logotipo">
-				<img src="images/invie.png" width="186" height="60" alt="Invie logotipo">
+				<img src="images/invie.png" srcset="images/invie.png 1x, images/invie2x.png 2x" width="186" height="60" alt="Invie logotipo">
 			</figure>
-			<nav class="menu">
+			<span class="burguer-button icon-menu" id="burguer-button"></span>
+			<nav class="menu" id="menu">
 				<ul>
 					<li>
 						<a href="index.html">home</a>
@@ -44,8 +49,16 @@
 		<section id="guitarras" class="guitarras contenedor">
 			<!-- guitarras -Guitarar-->
 			<h2>Nuestras guitarras</h2>
+			<div class="video-demo-contenedor">
+              <div class="video-demo">
+                <div class="video-responsive-contenedor">
+                  <iframe class="video-responsive-src " width="560" height="315" src="https://www.youtube.com/embed/R1dW8M4EqYY" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>  
+                </div>
+			  </div>
+            </div>			
+			<!--<video src="video/320x240.ogg"></video>-->
 			<article class="guitarra">
-				<img src="images/invie-acustica.png" width="350"  alt="Guitarra Invie acústica" class="right">
+				<img class="b-lazy right" data-src="images/invie-acustica.png|images/invie-acustica2x.png" width="350"  alt="Guitarra Invie acústica" >
 				<div class="contenedor-guitarra-a">
 					<h3 class="title-b">Invie Acústica</h3>
 					<ol>
@@ -56,7 +69,7 @@
 				</div>
 			</article>
 			<article class="guitarra b">
-				<img src="images/invie-classic.png" width="350"  alt="Guitarra Invie classic" class="left">
+				<img class="b-lazy left" data-src="images/invie-classic.png|images/invie-classic2x.png" width="350"  alt="Guitarra Invie classic" >
 				<div class="contenedor-guitarra-b">
 					<h3 class="title-b">Invie Classic</h3>
 					<ol>
@@ -70,7 +83,7 @@
 		<footer class="footer">
 			<div class="contenedor">
 				<div class="contacto">
-					<img src="images/invie-white.png" alt="logotipo blanco">
+					<img class="b-lazy" data-src="images/invie-white.png|images/invie-white2x.png" alt="logotipo blanco">
 					<a href="tel:+57302345678"><strong>Teléfono</strong><span>302345678</span></a>
 					<a href="mailto:info@invie.com"><strong>E-mail</strong><span>info@invie.com</span></a>
 				</div>	
@@ -112,5 +125,56 @@
 				</form>
 			</div>		
 		</footer>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+		<script>
+          var $burguerButton = document.getElementById('burguer-button');
+          var $menu = document.getElementById('menu');
+          
+          var consulta = window.matchMedia('(max-width:500px)')
+          consulta.addListener(mediaQuery)
+          
+          function mediaQuery() {
+            if (consulta.matches) {
+              console.log('se cumplio la condición')
+              $burguerButton.addEventListener('touchstart', toggleMenu);
+              
+            }else {
+              console.log('No se cumplio la condición')
+              $burguerButton.removeEventListener('touchstart', toggleMenu);
+            }
+          }
+
+          function toggleMenu(){
+            $menu.classList.toggle('active')
+          };
+
+          function showMenu(){
+            $menu.classList.add('active')
+          };
+
+          function hiddeMenu(){
+            $menu.classList.remove('active')
+          };
+
+          
+          mediaQuery();
+                                          
+          /*$burguerButton.addEventListener('touchstart', toggleMenu);
+          function toggleMenu(){
+            $menclassList.toggle('active')
+          };*/
+          
+          var bLazy = new Blazy({
+            selector: 'img'
+          });
+          
+          // gestos touch
+          var $body = document.body;
+          var gestos = new Hammer($body);
+          gestos.on('swipeleft', hiddeMenu);
+          gestos.on('swiperight', showMenu);
+          
+        </script>
 	</body>
 </html>
