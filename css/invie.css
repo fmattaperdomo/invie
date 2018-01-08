@@ -522,6 +522,10 @@ video {
 		margin: 0 auto;
 		width: 300px;
 	}
+  
+  .fromulario label{
+    font-size: 20px;
+  }
 	.intereses label {
 		display: block;
 		font-size: 20px;
