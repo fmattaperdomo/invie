@@ -507,8 +507,16 @@ video {
 	}
 	.contacto {
 		margin: 0 auto;
+        display: block;
 	}
+  
+  .contacto a {
+    display: block;
+  }
 
+  .sexo label {
+    display: block;
+  }
 	.formulario {
 		display: block;
 		margin: 0 auto;
@@ -516,11 +524,15 @@ video {
 	}
 	.intereses label {
 		display: block;
-		font-size: 16px;
+		font-size: 20px;
 	}
 	.col1 {
 		margin: 0;
 	}
+  
+    input[type="text"] {
+      margin-bottom: 20px;
+    }
 	input[type="text"], input[type="email"] {
 		font-size: 16px;
 		padding: 5px;
